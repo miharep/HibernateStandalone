@@ -3,6 +3,8 @@ package jm.task.core.jdbc.model;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Collection;
+import java.util.Iterator;
 
 @Table
 public class User {
@@ -58,5 +60,25 @@ public class User {
 
     public void setAge(Byte age) {
         this.age = age;
+    }
+    
+    @Override
+    public String toString() {
+        return "User: id = " + id
+                + ", name = " + name
+                + ", last name = " + lastName
+                +  ", age = " + age ;
+    }
+    
+    public static String toString(Collection<User> persons) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("All Users:");
+        
+        Iterator<User> it = persons.iterator();
+        while (it.hasNext()) {
+            sb.append("\n    ");
+            sb.append(it.next());
+        }
+        return sb.toString();
     }
 }
